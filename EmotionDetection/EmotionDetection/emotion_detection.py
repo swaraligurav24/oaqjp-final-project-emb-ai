@@ -44,7 +44,13 @@ def emotion_detector(text_to_analyze):
             "dominant_emotion": max(emotions, key=emotions.get)
         }
 
-    except (requests.exceptions.RequestException, KeyError, IndexError, TypeError, ValueError):
+    except (
+        requests.exceptions.RequestException,
+        KeyError,
+        IndexError,
+        TypeError,
+        ValueError
+    ):
         return {
             "anger": None,
             "disgust": None,
