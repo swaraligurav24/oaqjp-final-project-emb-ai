@@ -33,10 +33,7 @@ def emotion_detector(text_to_analyze):
 
         response.raise_for_status()
         data = response.json()
-
         emotions = data["emotionPredictions"][0]["emotion"]
-
-        dominant_emotion = max(emotions, key=emotions.get)
 
         return {
             "anger": emotions["anger"],
@@ -44,7 +41,7 @@ def emotion_detector(text_to_analyze):
             "fear": emotions["fear"],
             "joy": emotions["joy"],
             "sadness": emotions["sadness"],
-            "dominant_emotion": dominant_emotion
+            "dominant_emotion": max(emotions, key=emotions.get)
         }
 
     except (requests.exceptions.RequestException, KeyError, IndexError, TypeError, ValueError):
